@@ -1,21 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.gvcc.goffice</groupId>
+		<artifactId>goffice-base-project</artifactId>
+		<version>2.0.4</version>
+	</parent>
 
-			<layout class="net.gvcc.goffice.logger.JsonLayout">
-				<includeUserAccount>true</includeUserAccount>
-				<includeUserPrincipal>true</includeUserPrincipal>
+	<groupId>${parent.groupId}.common</groupId>
+	<artifactId>goffice-common-logging</artifactId>
+	<version>2.0.2</version>
+	<name>${project.artifactId}</name>
+	<description>Tools used to customizing logger</description>
+	<properties>
+		<scm.group>${scm.group.base}/common</scm.group>
+	</properties>
 
-				<timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSX</timestampFormat>
-				<timestampFormatTimezoneId>Etc/UTC</timestampFormatTimezoneId>
-				<jsonFormatter
-					class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
-					<prettyPrint>false</prettyPrint>
-				</jsonFormatter>
-				<appendLineSeparator>true</appendLineSeparator> <!-- don't forget line break -->
-			</layout>
-		</encoder>
-	</appender>
-	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		....
+	<scm>
+		<connection>${scm.connection}</connection>
+		<developerConnection>${scm.developer.connection}</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-json-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+	</dependencies>
+</project>
