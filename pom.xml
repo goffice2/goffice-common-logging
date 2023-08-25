@@ -1,28 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>net.gvcc.goffice</groupId>
 		<artifactId>goffice-base-project</artifactId>
-		<version>2.0.4</version>
+		<version>2.0.17</version>
 	</parent>
-
-	<groupId>${parent.groupId}.common</groupId>
+	<groupId>net.gvcc.goffice.common</groupId>
 	<artifactId>goffice-common-logging</artifactId>
-	<version>2.0.2</version>
+	<version>2.0.7</version>
 	<name>${project.artifactId}</name>
 	<description>Tools used to customizing logger</description>
 	<properties>
 		<scm.group>${scm.group.base}/common</scm.group>
 	</properties>
-
 	<scm>
 		<connection>${scm.connection}</connection>
 		<developerConnection>${scm.developer.connection}</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
-
+	  <tag>goffice-common-logging-2.0.7</tag>
+  </scm>
 	<dependencies>
+		<dependency>
+			<groupId>net.gvcc.goffice.common</groupId>
+			<artifactId>goffice-common-core</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -43,5 +44,51 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+	<!--	<build>-->
+	<!--		<plugins>-->
+	<!--			<plugin>-->
+	<!--				<artifactId>maven-compiler-plugin</artifactId>-->
+	<!--				<executions>-->
+	<!--					<execution>-->
+	<!--						<id>jdk8-compile</id>-->
+	<!--						<phase>compile</phase>-->
+	<!--						<goals>-->
+	<!--							<goal>compile</goal>-->
+	<!--						</goals>-->
+	<!--						<configuration>-->
+	<!--							<verbose>true</verbose>-->
+	<!--							<source>1.8</source>-->
+	<!--							<target>1.8</target>-->
+	<!--							<fork>true</fork>-->
+	<!-- JDK_8_EXECUTABLE: property da configurare: come -DJDK_8_EXECUTABLE nella build oppure, meglio ancora, nel file settings.xml -->
+	<!--							<executable>${JDK_8_EXECUTABLE}</executable>-->
+	<!--							<outputDirectory>${project.build.outputDirectory}_jdk8</outputDirectory>-->
+	<!--						</configuration>-->
+	<!--					</execution>-->
+	<!--				</executions>-->
+	<!--			</plugin>-->
+	<!--			<plugin>-->
+	<!--				<groupId>org.apache.maven.plugins</groupId>-->
+	<!--				<artifactId>maven-jar-plugin</artifactId>-->
+	<!--				<executions>-->
+	<!--					<execution>-->
+	<!--						<id>jar-jdk8</id>-->
+	<!--						<goals>-->
+	<!--							<goal>jar</goal>-->
+	<!--						</goals>-->
+	<!--						<configuration>-->
+	<!--							<classifier>jdk8</classifier>-->
+	<!--							<classesDirectory>${project.build.outputDirectory}_jdk8</classesDirectory>-->
+	<!--						</configuration>-->
+	<!--					</execution>-->
+	<!--				</executions>-->
+	<!--			</plugin>-->
+	<!--		</plugins>-->
+	<!--	</build>-->
 </project>

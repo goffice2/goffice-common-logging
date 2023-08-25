@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="JSON_FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_DIR:-logs}/goffice-common-logging.log</file>
+		<immediateFlush>true</immediateFlush>
+		<append>false</append>
+		
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="net.gvcc.goffice.logger.GOfficeJsonLayout">
+				<!-- allowed values: true/false/auth-only -->
+				<!-- default value: auth-only -->
+				<includeUserAccount>${PRINT_USER_ACCOUNT:-false}</includeUserAccount>
+				<includeUserRoles>${PRINT_USER_ROLES:-false}</includeUserRoles>
+				<includeUserRealm>false</includeUserRealm>
+				<includeUserEmail>false</includeUserEmail>
+				<includeUserClaims>false</includeUserClaims>
+				<!-- allowed values: all/list -->
+				<!-- the list can be a sequence of header-names separated by comma, semicolon or spaces -->
+				<includeHeaders>
+					x-forwarded-for
+					x-request-id
+					user-agent
+				</includeHeaders>
+
+				<timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSX</timestampFormat>
+				<timestampFormatTimezoneId>Etc/UTC</timestampFormatTimezoneId>
+				<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+					<prettyPrint>false</prettyPrint> <!-- we need to print as a single line -->
+				</jsonFormatter>
+				<appendLineSeparator>true</appendLineSeparator> <!-- don't forget line break -->
+			</layout>
+		</encoder>
+    </appender>
+
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<logger name="net.gvcc.goffice.logger" additivity="false" level="INFO">
+		<appender-ref ref="JSON_FILE" />
+	</logger>
+</configuration>
